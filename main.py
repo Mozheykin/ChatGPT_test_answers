@@ -5,11 +5,12 @@ from pprint import pprint
 
 
 def init_press_v():
+    print('[INFO] Get started')
     img = screenshot()
     if img is not None:
-        print(img)
+        print('[INFO] Screenshot taken')
         list_text_ocr = img_to_text(img=img)
-        pprint(list_text_ocr)
+        # pprint(list_text_ocr)
 
 
     else:
