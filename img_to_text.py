@@ -3,8 +3,9 @@ import cv2
 import pytesseract
 import numpy
 
-def img_to_text(img:Image) -> list:
+def img_to_text(img:Image, split:list) -> list:
     result = list()
+    position_answers = list()
     img = numpy.array(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
@@ -25,12 +26,18 @@ def img_to_text(img:Image) -> list:
                 'text': value,
                 }
             )
-            if "©" in value:
+            splits = [split_char in value for split_char in split]
+            if all([any(splits), w == h]):
                 img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
-
+                position_answers.append({
+                                            'x': x, 
+                                            'y': y, 
+                                            'w': w, 
+                                            'h': h,
+                                        })
 
     # cv2.imshow("ROI", img)
     # cv2.waitKey(15000)
     # cv2.destroyAllWindows()
     
-    return result
+    return result, position_answers
