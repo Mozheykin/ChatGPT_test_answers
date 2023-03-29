@@ -2,6 +2,7 @@ import keyboard
 from get_screen import screenshot
 from img_to_text import img_to_text
 from pprint import pprint
+from parse_screen_nurseslabs import get_question, get_answer
 
 
 def init_press_v():
@@ -10,7 +11,12 @@ def init_press_v():
     if img is not None:
         print('[INFO] Screenshot taken')
         list_text_ocr = img_to_text(img=img)
-        # pprint(list_text_ocr)
+        print('[INFO] Get no parse text out image')
+        question = get_question(list_text_ocr)
+        if question is None:
+            raise Exception('get_question return None')
+        print(f'[QUESTION] {question}')
+
 
 
     else:
