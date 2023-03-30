@@ -1,4 +1,4 @@
-
+import nltk
 
 url = " © https://nurseslabs.com/nursing-pharmacology-nclex-practice-questions-test-bank/"
 
@@ -29,3 +29,10 @@ def get_answers(data:dict, char_split:str='©'):
     text = ' '.join([text.get('text') for text in data])
     result = text.split(char_split)
     return result[1:] 
+
+
+def get_nltk_index(answer_gpt:str, answers:list) -> list:
+    result_list = list()
+    for answer in answers:
+        result_list.append(nltk.edit_distance(answer, answer_gpt))
+    return result_list

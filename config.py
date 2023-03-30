@@ -1,9 +1,10 @@
 import os
+import env
 
 # ChatGPT Settings:
-API_KEY = os.getenv('API_KEY')
-
-model="" 
+# API_KEY = os.getenv('API_KEY')
+API_KEY = env.API_KEY
+model="gpt-3.5-turbo" 
 temperature=0.5 
 max_tokens=1000
 top_p=1.0
@@ -15,6 +16,6 @@ Start_Question = ['Question',]
 End_Question = [':','©','()','\{\}']
 
 # Select answers
-Start_Answer = End_Question # or insert list symbols [':','©','()','\{\}']
+Start_Answer = ['©','()','\{\}']# or insert list symbols [':','©','()','\{\}']
 End_Answer = Start_Answer.copy() 
 End_Answer.append('.')
