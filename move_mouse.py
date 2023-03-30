@@ -6,4 +6,4 @@ def move_mouse(x:int, y:int, w:int, h:int) -> set:
     y = int(y + (h / 2))
     pyautogui.position()
     pyautogui.moveTo(x=x, y=y, duration=1)
-    return set(x, y)
+    return {x, y}
