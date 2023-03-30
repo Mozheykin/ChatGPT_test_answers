@@ -44,7 +44,8 @@ def init_press_v():
         nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers=answers)
         logger.info(f'nltk: {nltk_list}')
         select = positions_answers[nltk_list.index(min(nltk_list))]
-        move_mouse(x=select.get('x'), y=select.get('y'), w=select.get('w'), h=select.get('h'))
+        x, y = move_mouse(x=select.get('x'), y=select.get('y'), w=select.get('w'), h=select.get('h'))
+        logger.info(f'{x=}, {y=}')
 
     else:
         raise Exception('NotScreenShotImage')
