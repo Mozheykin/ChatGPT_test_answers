@@ -75,6 +75,8 @@ def main():
         keyboard.wait('esc')
     except KeyboardInterrupt:
         logger.info('Script stoped Ctrl+C')
+    except Exception as ex:
+        logger.error(f'error: {ex}')
     finally:
         logger.info('Exit')
 
