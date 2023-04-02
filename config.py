@@ -2,7 +2,7 @@ import os
 import env
 
 # ChatGPT Settings:
-# API_KEY = os.getenv('API_KEY')
+
 API_KEY = env.API_KEY
 model="gpt-3.5-turbo" 
 temperature=0.5 
@@ -16,6 +16,6 @@ Start_Question = ['Question',]
 End_Question = [':','©','()','\{\}']
 
 # Select answers
-Start_Answer = ['©','()','\{\}']# or insert list symbols [':','©','()','\{\}']
+Start_Answer = ['©','()','\{\}', '@']# or insert list symbols [':','©','()','\{\}']
 End_Answer = Start_Answer.copy() 
 End_Answer.append('.')
