@@ -4,7 +4,7 @@ import cv2
 from pathlib import Path
 from config import Start_Answer
 from pprint import pprint
-from outs import OUT1, OUT2
+from outs import OUT1, OUT2, OUT3
 
 
 class TestImgToText(unittest.TestCase):
@@ -19,6 +19,12 @@ class TestImgToText(unittest.TestCase):
         img = cv2.imread(filename=str(file))
         pprint(img_to_text(img, Start_Answer))
         self.assertEqual(img_to_text(img, Start_Answer), OUT2)
+    
+    def test_img2(self):
+        file = Path('Tests/images/Screenshot (870).png')
+        img = cv2.imread(filename=str(file))
+        pprint(img_to_text(img, Start_Answer))
+        self.assertEqual(img_to_text(img, Start_Answer), OUT3)
 
 if __name__ == "__main__":
     unittest.main()

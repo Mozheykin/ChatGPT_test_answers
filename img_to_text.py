@@ -27,7 +27,7 @@ def img_to_text(img:Image, split:list) -> list:
                 }
             )
             splits = [split_char in value for split_char in split]
-            if all([any(splits), w == h]):
+            if all([any(splits), h in [w+ind for ind in range(-1, 1)]]):
                 img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
                 position_answers.append({
                                             'x': x, 
