@@ -1,7 +1,7 @@
 import keyboard
 from get_screen import screenshot
 from img_to_text import img_to_text
-from parse_screen_nurseslabs import get_question, get_answers, get_nltk_index
+from parse_screen_nurseslabs import get_question, get_answers, get_nltk_index, get_answer_text, get_question_text
 from chatgpt import get_response, get_answer
 from loguru import logger
 from config import Start_Question, End_Question, Start_Answer, End_Answer
@@ -23,12 +23,12 @@ def init_press_v():
             if not positions_answers:
                 raise NotParsePositionAnswer('Not parse positions answers')
 
-            question = get_question(list_text_ocr)
+            question = get_question_text(list_text_ocr)
             if question is None:
                 raise GetQuestionReturnNone('get_question return None')
             logger.info(f'[QUESTION] {question}')
 
-            answers = get_answers(list_text_ocr)
+            answers = get_answer_text(list_text_ocr)
             logger.info(f'[ANSWERS] {answers}')
             if answers is None:
                 raise GetAnswersReturnNone('get_answers return None')
