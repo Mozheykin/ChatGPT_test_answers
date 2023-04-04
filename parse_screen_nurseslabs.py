@@ -31,7 +31,7 @@ def get_question_text(data:dict) -> str:
 
 def get_answer_text(data:dict) -> list:
     text = ' '.join(dict_t.get('text') for dict_t in data).strip()
-    answers = re.search(r'(@|©)(\s\w)(.*)$', text)
+    answers = re.search(r'(@|©)(\s\w\.)(.*)$', text)
     print(answers[0])
     result = [answer for answer in re.split(r'(?:@|©)(?:\s)(.*?)(?:@|©|$)', answers[0]) if answer]
     return result
