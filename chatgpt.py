@@ -1,5 +1,5 @@
 import openai
-from config import model, max_tokens, temperature, top_p, frequency_penalty, API_KEY
+from config import model, max_tokens, temperature, top_p, frequency_penalty, API_KEY, presence_penalty
 
 
 def get_response(request:str) -> dict:
@@ -31,6 +31,7 @@ Send me back the complete correct answer. Without any additional characters and 
         max_tokens=max_tokens,
         top_p=top_p,
         frequency_penalty=frequency_penalty,
+        presence_penalty=presence_penalty,
     )
 
 

@@ -5,10 +5,11 @@ import env
 
 API_KEY = env.API_KEY
 model="gpt-3.5-turbo" 
-temperature=0.5 
-max_tokens=1000
+temperature=0.7 
+max_tokens=256
 top_p=1.0
-frequency_penalty=0.5
+frequency_penalty=0
+presence_penalty=0
 
 
 # Select question
