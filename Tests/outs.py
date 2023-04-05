@@ -381,3 +381,7 @@ OUT5 = ([{'h': 27, 'text': 'Thank', 'w': 97, 'x': 1, 'y': 16},
     {'h': 27, 'w': 26, 'x': 165, 'y': 701},
     {'h': 27, 'w': 26, 'x': 165, 'y': 787},
     {'h': 26, 'w': 26, 'x': 165, 'y': 873}])
+
+response1 = 'Answer: B'
+response2 = 'B.Drugname'
+response3 = 'B'
