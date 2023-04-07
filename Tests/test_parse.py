@@ -6,10 +6,13 @@ from outs import OUT1, OUT2, OUT3, OUT4, OUT5
 
 class TestParse(unittest.TestCase):
     def test_question(self):
-        self.assertEqual(get_question_text(OUT1[0])[0], 'Ss ')
+        self.assertEqual(get_question_text(OUT1[0]), ('Ss', 1))
     
     def test_question1(self):
-        self.assertEqual(get_question_text(OUT2[0])[0], 'The interaction of one drug increased by the presence of a second drug is known as: ')
+        self.assertEqual(get_question_text(OUT2[0]), ('The interaction of one drug increased by the presence of a second drug is known as:', 1))
+
+    def test_question2(self):
+        self.assertEqual(get_question_text(OUT4[0]), ('What is the reason behind placing the bed in the reverse Trendelenburg position while the nurse cares for a patient with critical limb ischemia?', 2))
 
     def test_answer(self):
         self.assertEqual(get_answer_text(OUT1[0]), ['A.Chemical name', 'B.Drugname', 'C. Generic name', 'D.Trade name'])
