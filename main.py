@@ -4,7 +4,7 @@ from img_to_text import img_to_text
 from parse_screen_nurseslabs import get_question, get_answers, get_nltk_index, get_answer_text, get_question_text
 from chatgpt import get_response, get_answer
 from loguru import logger
-from config import Start_Question, End_Question, Start_Answer, End_Answer
+from config import Start_Question, End_Question, Start_Answer, End_Answer, chars_answer, symbols_answer
 from move_mouse import move_mouse
 from errors import *
 
@@ -17,10 +17,10 @@ def init_press_v():
         if img is not None:
             logger.info('Screenshot taken')
 
-            list_text_ocr, positions_answers = img_to_text(img=img, split=Start_Answer)
+            list_text_ocr, positions_answers = img_to_text(img=img, split_chars=chars_answer, split_symbols=symbols_answer)
             logger.info('Get no parse text out image')
             logger.info(f'Positions: {positions_answers}')
-            if not positions_answers:
+            if any([not positions_answers, positions_answers is None]):
                 raise NotParsePositionAnswer('Not parse positions answers')
 
             question = get_question_text(list_text_ocr)
