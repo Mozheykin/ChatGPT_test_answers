@@ -11,10 +11,8 @@ from time import sleep
 
 logger.add('logging.log', format='{time} {level} {message}', level='INFO')
 
-def select_true_answer(answer_chatgpt, answers, positions_answers):
-    nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers=answers)
-    logger.info(f'nltk: {nltk_list}')
-    select = positions_answers[nltk_list.index(min(nltk_list))]
+def select_true_answer(index:int, positions_answers):
+    select = positions_answers[index]
     x, y = move_mouse(x=select.get('x'), y=select.get('y'), w=select.get('w'), h=select.get('h'))
     logger.info(f'{x=}, {y=}')
 
@@ -31,7 +29,7 @@ def init_press_v():
             if any([not positions_answers, positions_answers is None]):
                 raise NotParsePositionAnswer('Not parse positions answers')
 
-            question, col_answers = get_question_text(list_text_ocr)
+            question = get_question_text(list_text_ocr)
             if question is None:
                 raise GetQuestionReturnNone('get_question return None')
             logger.info(f'[QUESTION] {question}')
@@ -57,19 +55,11 @@ def init_press_v():
             if answer_chatgpt is None:
                 raise GetAnswerReturnNone('get_answer return None')
 
-            if col_answers == 1:
-                # nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers=answers)
-                # logger.info(f'nltk: {nltk_list}')
-                # select = positions_answers[nltk_list.index(min(nltk_list))]
-                # x, y = move_mouse(x=select.get('x'), y=select.get('y'), w=select.get('w'), h=select.get('h'))
-                # logger.info(f'{x=}, {y=}')
-                select_true_answer(answer_chatgpt, answers, positions_answers)
-            elif col_answers == 2:
-                for answer_for_def in answer_chatgpt.split(','):
-                    select_true_answer(answer_for_def, answers, positions_answers)
-                    sleep(3)
-            else:
-                logger.info('Col_answers == 0')
+            nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers=answers)
+            logger.info(f'nltk: {nltk_list}')
+            for nltk in nltk_list:
+                index = nltk.index(1)
+                select_true_answer(index, positions_answers)
 
         else:
             raise Exception('NotScreenShotImage')

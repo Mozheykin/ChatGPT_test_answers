@@ -18,7 +18,7 @@ End_Question = [':','©','()','\{\}']
 # Select answers
 # Start_Answer = ['©','()','\{\}', '@', 'A.', 'B.', 'C.', 'D.', 'F.', 'E.', ]# or insert list symbols [':','©','()','\{\}']
 chars_answer = [r'A\.', r'B\.', r'C\.', r'D\.', r'F\.', r'E\.',]
-symbols_answer = ['©','()','\{\}', '@',]
+symbols_answer = ['©', '@',]
 Start_Answer = [*chars_answer, *symbols_answer]
 End_Answer = Start_Answer.copy() 
 End_Answer.append('.')

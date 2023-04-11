@@ -55,10 +55,10 @@ OUT1 = ([{'h': 18, 'text': 'Care', 'w': 53, 'x': 602, 'y': 151},
     {'h': 21, 'text': '©', 'w': 21, 'x': 157, 'y': 919},
     {'h': 20, 'text': 'D.Trade', 'w': 97, 'x': 215, 'y': 918},
     {'h': 14, 'text': 'name', 'w': 64, 'x': 321, 'y': 924}],
-    [{'h': 21, 'w': 21, 'x': 157, 'y': 551},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 674},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 796},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 919}])
+    [{'h': 18, 'w': 141, 'x': 213, 'y': 551},
+    {'h': 23, 'w': 160, 'x': 215, 'y': 674},
+    {'h': 18, 'w': 21, 'x': 214, 'y': 797},
+    {'h': 20, 'w': 97, 'x': 215, 'y': 918}])
 
 OUT2 = ([{'h': 10, 'text': 'Ni', 'w': 8, 'x': 960, 'y': 8},
     {'h': 11, 'text': '+', 'w': 11, 'x': 358, 'y': 44},
@@ -123,10 +123,10 @@ OUT2 = ([{'h': 10, 'text': 'Ni', 'w': 8, 'x': 960, 'y': 8},
     {'h': 24, 'text': 'C.Antagonism', 'w': 173, 'x': 214, 'y': 794},
     {'h': 21, 'text': '©', 'w': 21, 'x': 157, 'y': 918},
     {'h': 24, 'text': 'D.Synergism', 'w': 153, 'x': 215, 'y': 917}],
-    [{'h': 21, 'w': 21, 'x': 157, 'y': 549},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 672},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 795},
-    {'h': 21, 'w': 21, 'x': 157, 'y': 918}])
+    [{'h': 18, 'w': 23, 'x': 213, 'y': 549},
+    {'h': 18, 'w': 20, 'x': 215, 'y': 672},
+    {'h': 24, 'w': 173, 'x': 214, 'y': 794},
+    {'h': 24, 'w': 153, 'x': 215, 'y': 917}])
 
 OUT3 = ([{'h': 21, 'text': 'Ose', 'w': 68, 'x': 0, 'y': 3},
     {'h': 24, 'text': 'OT', 'w': 33, 'x': 82, 'y': 0},
@@ -475,9 +475,19 @@ OUT6 = ([{'h': 2, 'text': 'EB', 'w': 2, 'x': 131, 'y': 44},
     {'h': 17, 'text': 'Blood', 'w': 56, 'x': 671, 'y': 984},
     {'h': 17, 'text': 'Cell', 'w': 36, 'x': 735, 'y': 984},
     {'h': 16, 'text': 'Count', 'w': 59, 'x': 778, 'y': 985}],
-    [{'h': 48, 'w': 48, 'x': 13, 'y': 247}])
+    [{'h': 16, 'w': 19, 'x': 583, 'y': 482},
+    {'h': 16, 'w': 16, 'x': 585, 'y': 582},
+    {'h': 16, 'w': 17, 'x': 585, 'y': 783},
+    {'h': 16, 'w': 15, 'x': 585, 'y': 884},
+    {'h': 16, 'w': 12, 'x': 585, 'y': 985}])
 
 
 response1 = 'Answer: B'
 response2 = 'B.Drugname'
 response3 = 'B'
+response4 = 'Answer: A) Partial thromboplastin time. B) Prothrombin time. C) sadsad.'
+response5 = 'Answer: A. Partial thromboplastin time. B. Prothrombin time. C. sadsad.'
+response6 = 'Answer: A) Partial thromboplastin time. B) Prothrombin time.'
+response7 = 'Answer: A. Partial thromboplastin time.'
+response8 = 'Answer: A. Partial thromboplastin time'
+response9 = 'Answer: A. Partial thromboplastin time B. Prothrombin time C. sadsad'

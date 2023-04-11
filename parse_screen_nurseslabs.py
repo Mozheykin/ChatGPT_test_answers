@@ -31,10 +31,10 @@ def get_question_text(data:dict) -> str:
     if not question:
         question = re.search(r'(?:\s[Qq]uestion\s\d*\s\d\s\w*\s)(.*?\s)(?:@|©)', text)
         if question:
-            return question[1].strip(), 2
+            return question[1].strip()
     else:
-        return question[1].strip(), 1
-    return '', 0 
+        return question[1].strip()
+
 
 def get_answer_text(data:dict) -> list:
     text = ' '.join(dict_t.get('text') for dict_t in data).strip()
@@ -61,8 +61,28 @@ def get_answers(data:dict, char_split:str='©'):
     return result[1:] 
 
 
+def get_parse_answer(answer_gpt:str) -> list:
+    answer = re.search(r'(?:Answer:\s)(.*$)', answer_gpt)
+    if answer:
+        # answers = [x.group() for x in re.finditer(r'[A-Z](\.|\))(.*?)(?:[A-Z]\.|$)', answer[1])]
+        answers = re.split(r'[A-Z][\.\)]', answer[1])
+        answers = [answer.strip() for answer in answers if answer]
+        if answers:
+            return answers
+        answers = answer[1]
+        if answers:
+            return answers
+        print(answers)
+    else:
+        return [answer_gpt]
+
 def get_nltk_index(answer_gpt:str, answers:list) -> list:
-    result_list = list()
-    for answer in answers:
-        result_list.append(nltk.edit_distance(answer, answer_gpt))
-    return result_list
+    result = list()
+    list_answers = get_parse_answer(answer_gpt=answer_gpt)
+    for res in list_answers:
+        result_list = list()
+        for answer in answers:
+            result_list.append(nltk.edit_distance(answer, res))
+        min_index = result_list.index(min(result_list))
+        result.append([1 if index == min_index else 0 for index in range(len(result_list))])
+    return result
