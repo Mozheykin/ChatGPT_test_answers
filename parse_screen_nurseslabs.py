@@ -27,7 +27,9 @@ def get_question(data:dict, start_questions:list=['Question'], split_chars:list=
 
 def get_question_text(data:dict) -> str:
     text = ' '.join(dict_t.get('text') for dict_t in data)
-    question = re.search(r'(?:\d\.\s[Qq]uestion\s)(.*?\s)(?:@|©)', text)
+    print(text)
+    question = re.search(r'(?:\d\.\s[Qq]uestion)(.*?)(?:@|©|[A-Z]\.)', text)
+    print(question)
     if not question:
         question = re.search(r'(?:\s[Qq]uestion\s\d*\s\d\s\w*\s)(.*?\s)(?:@|©)', text)
         if question:

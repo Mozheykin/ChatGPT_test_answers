@@ -38,7 +38,7 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                                             'w': w, 
                                             'h': h,
                                         })
-            if all([any(splits_symbols), h in [w+ind for ind in range(-1, 2)], h <= max_h, w <= max_w]):
+            if all([any(splits_symbols), h in [w+ind for ind in range(-1, 2)]]):
                 position_symbol_answer.append({
                                             'x': x, 
                                             'y': y, 
@@ -49,6 +49,8 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
     # cv2.imshow("ROI", img)
     # cv2.waitKey(15000)
     # cv2.destroyAllWindows()
+    print(position_char_answer)
+    print(position_symbol_answer)
     if len(position_char_answer) > 2:
         return result, position_char_answer
     if len(position_symbol_answer) > 2:

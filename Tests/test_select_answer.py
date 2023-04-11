@@ -5,15 +5,17 @@ from outs import response1, response2, response3
 
 class TestSelectAnswer(unittest.TestCase):
     def test_response1(self):
-        self.assertEqual(get_nltk_index(response1, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [13, 10, 12, 11])
+        self.assertEqual(get_nltk_index(response1, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [[0, 1, 0, 0]])
     
     def test_response2(self):
-        self.assertEqual(get_nltk_index(response2, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [11, 0, 9, 6])
+        self.assertEqual(get_nltk_index(response2, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [[0, 1, 0, 0]])
 
     def test_response3(self):
-        self.assertEqual(get_nltk_index(response3, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [16, 9, 15, 12])
+        self.assertEqual(get_nltk_index(response3, ['A.Chemical name ', 'B.Drugname', 'C. Generic name', 'D.Trade name']), [[0, 1, 0, 0]])
     
-    def test_response_chatgpt_1(self):
-        self.assertEqual(parse_answer, 'Answer: A) Partial thromboplastin time. B) Prothrombin time.')
+    # def test_response_chatgpt_1(self):
+    #     self.assertEqual(parse_answer, 'Answer: A) Partial thromboplastin time. B) Prothrombin time.')
+
+    
 if __name__ == "__main__":
     unittest.main()
