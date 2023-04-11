@@ -27,7 +27,14 @@ def get_question(data:dict, start_questions:list=['Question'], split_chars:list=
 
 def get_question_text(data:dict) -> str:
     text = ' '.join(dict_t.get('text') for dict_t in data)
-    return re.findall(r'(?:\d\.\s[Qq]uestion\s)(.*?\s)(?:@|©)', text)
+    question = re.search(r'(?:\d\.\s[Qq]uestion\s)(.*?\s)(?:@|©)', text)
+    if not question:
+        question = re.search(r'(?:\s[Qq]uestion\s\d*\s\d\s\w*\s)(.*?\s)(?:@|©)', text)
+        if question:
+            return question[1].strip(), 2
+    else:
+        return question[1].strip(), 1
+    return '', 0 
 
 def get_answer_text(data:dict) -> list:
     text = ' '.join(dict_t.get('text') for dict_t in data).strip()
