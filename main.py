@@ -11,6 +11,8 @@ from time import sleep
 
 logger.add('logging.log', format='{time} {level} {message}', level='INFO')
 
+MAIN_URL = 'https://nurseslabs.com/nursing-pharmacology-nclex-practice-questions-test-bank/'
+
 def select_true_answer(index:int, positions_answers):
     select = positions_answers[index]
     x, y = move_mouse(x=select.get('x'), y=select.get('y'), w=select.get('w'), h=select.get('h'))
