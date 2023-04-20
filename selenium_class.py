@@ -16,7 +16,7 @@ import time
 
 
 class SeleniumParse:
-    def __init__(self, options_arguments:list) -> None:
+    def __init__(self, options_arguments:list, url:str) -> None:
         chrome_options = Options()
         for option in options_arguments:
             chrome_options.add_argument(option)
@@ -25,19 +25,20 @@ class SeleniumParse:
         chrome_options.add_argument('--disable-dev-shm-usage')
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
         self.driver.maximize_window()
-
-    def get_class_text(self, url:str, class_names:list):
         try:
             self.driver.get(url)
+        except Exception as ex:
+            print(ex)
+            self.driver.close()
+            self.driver.quit()
+
+    def get_class_text(self, class_names:list):
+        try:
             result = dict()
             for class_name in class_names:
                 self.wait_until_visible(class_name=class_name)
                 result[class_name] = self.get_find_elements(class_name)
             return result
-            # button = driver.find_element(By.NAME, 'check')
-            # button.send_keys(Keys.ARROW_DOWN)
-            # with open('temp.hml', 'w') as file:
-            #     file.write(driver.page_source)
         except Exception as ex:
             print(ex)
             self.driver.close()
@@ -104,10 +105,13 @@ if __name__ == '__main__':
     button = test_parse.find_element(xpath='//*[@id="wpProQuiz_62"]')
     test_parse.scroll_element(element=button)
 
-
-    select_answer = test_parse.find_element(xpath='//*[@id="wpProQuiz_62"]')
-    select_answer = select_answer.find_element(By.ID, result[answers_class][1])
-    select_answer.click()
+    index_answer = 3
+    select_answer = test_parse.find_element(xpath=f'//input[@value="{index_answer}"]')
+    # select_answer = select_answer.find_element(By.XPATH, result[answers_class][1])
+    if select_answer:
+        test_parse.wait_until_clickable(xpath=f'//input[@value="{index_answer}"]')
+        test_parse.scroll_element(select_answer)
+        select_answer.click()
 
     time.sleep(15)
     test_parse.close()
