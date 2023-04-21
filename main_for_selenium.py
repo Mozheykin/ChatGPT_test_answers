@@ -22,40 +22,45 @@ def main():
     url = get_url()
     options_arguments = ['--no-sandbox', '--disable-dev-shm-usage']
     core = SeleniumParse(options_arguments=options_arguments, url=url)
-
     question_class = 'wpProQuiz_question_text'
     answers_class = 'wpProQuiz_questionListItem'
     class_names = [question_class, answers_class]
 
-    result = core.get_class_text(class_names=class_names)
+    while True:
+        result = core.get_class_text(class_names=class_names)
 
-    if result[answers_class] and result[question_class]:
-        request = f'Question: {result[question_class]}, Options: {" ".join(answer for answer in result[answers_class])}'
-        response = get_response(request=request)
-        answer_chatgpt = get_answer(response=response)
+        print(result)
 
-        print(answer_chatgpt)
+        if result[answers_class] and result[question_class]:
+            request = f'Question: {result[question_class]}, Options: {" ".join(answer for answer in result[answers_class])}'
+            response = get_response(request=request)
+            answer_chatgpt = get_answer(response=response)
 
-        nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers= result[answers_class])
+            print(answer_chatgpt)
 
-        print(nltk_list)
+            nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers= result[answers_class])
 
-        index_answer = nltk_list.index(max(nltk_list))
-        print(index_answer)
-        
-        select_answer = core.find_element(xpath=f'//input[@value="{index_answer}"]')
+            print(nltk_list[0])
 
-        if select_answer:
-            core.wait_until_clickable(xpath=f'//input[@value="{index_answer}"]')
-            core.scroll_element(select_answer)
-            select_answer.click()
-        
-        button = core.find_element(xpath='//button[@value="Check"]')
-        if button:
-            core.scroll_element(element=button)
-            button.click()
-        
-        time.sleep(10)
+            index_answer = nltk_list[0].index(max(nltk_list[0])) + 1
+            print(index_answer)
+
+            poligon_question = core.find_element(xpath='//*[@id="wpProQuiz_62"]')
+            core.scroll_element(element=poligon_question)
+
+            select_answer = core.find_element(xpath=f'//input[@value="{index_answer}"]')
+
+            if select_answer:
+                # core.wait_until_clickable(xpath=f'//input[@value="{index_answer}"]')
+                core.scroll_element(select_answer)
+                select_answer.click()
+            
+            # button = core.find_element(xpath='//button[@value="Check"]')
+            # if button:
+            #     core.scroll_element(element=button)
+            #     button.click()
+            
+            time.sleep(10)
     
     core.close()
 

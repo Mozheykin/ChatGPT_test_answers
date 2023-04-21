@@ -27,6 +27,7 @@ class SeleniumParse:
         self.driver.maximize_window()
         try:
             self.driver.get(url)
+            self.action = ActionChains(self.driver)
         except Exception as ex:
             print(ex)
             self.driver.close()
@@ -36,7 +37,7 @@ class SeleniumParse:
         try:
             result = dict()
             for class_name in class_names:
-                self.wait_until_visible(class_name=class_name)
+                # self.wait_until_visible(class_name=class_name)
                 result[class_name] = self.get_find_elements(class_name)
             return result
         except Exception as ex:
@@ -82,7 +83,9 @@ class SeleniumParse:
             return self.driver.find_element(By.CSS_SELECTOR, css_selector)
     
     def scroll_element(self, element:WebElement):
-        ActionChains(self.driver).move_to_element(element).perform()
+        self.action.move_to_element(element).perform()
+        self.action.click()
+
         
 
     def close(self):
@@ -93,25 +96,28 @@ class SeleniumParse:
 if __name__ == '__main__':
     options_arguments = ['--no-sandbox', '--disable-dev-shm-usage']
     url = 'https://nurseslabs.com/nursing-pharmacology-nclex-practice-questions-test-bank/'
-    test_parse = SeleniumParse(options_arguments=options_arguments)
-    question_class = 'wpProQuiz_question_text'
-    answers_class = 'wpProQuiz_questionListItem'
-    class_names = [question_class, answers_class]
+    test_parse = SeleniumParse(options_arguments=options_arguments, url=url)
+    text = test_parse.driver.page_source
+    with open('temp.html', 'w') as file:
+        file.writelines(text)
+    # question_class = 'wpProQuiz_question_text'
+    # answers_class = 'wpProQuiz_questionListItem'
+    # class_names = [question_class, answers_class]
 
-    result = test_parse.get_class_text(url=url, class_names=class_names)
-    print(f'{result=}')
+    # result = test_parse.get_class_text(url=url, class_names=class_names)
+    # print(f'{result=}')
 
-    # test_parse.wait_until_clickable(xpath='//*[@id="wpProQuiz_62"]') 
-    button = test_parse.find_element(xpath='//*[@id="wpProQuiz_62"]')
-    test_parse.scroll_element(element=button)
+    # # test_parse.wait_until_clickable(xpath='//*[@id="wpProQuiz_62"]') 
+    # button = test_parse.find_element(xpath='//*[@id="wpProQuiz_62"]')
+    # test_parse.scroll_element(element=button)
 
-    index_answer = 3
-    select_answer = test_parse.find_element(xpath=f'//input[@value="{index_answer}"]')
-    # select_answer = select_answer.find_element(By.XPATH, result[answers_class][1])
-    if select_answer:
-        test_parse.wait_until_clickable(xpath=f'//input[@value="{index_answer}"]')
-        test_parse.scroll_element(select_answer)
-        select_answer.click()
+    # index_answer = 3
+    # select_answer = test_parse.find_element(xpath=f'//input[@value="{index_answer}"]')
+    # # select_answer = select_answer.find_element(By.XPATH, result[answers_class][1])
+    # if select_answer:
+    #     test_parse.wait_until_clickable(xpath=f'//input[@value="{index_answer}"]')
+    #     test_parse.scroll_element(select_answer)
+    #     select_answer.click()
 
     time.sleep(15)
     test_parse.close()
