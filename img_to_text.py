@@ -46,9 +46,9 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                                             'h': h,
                                         })
 
-    # cv2.imshow("ROI", img)
-    # cv2.waitKey(15000)
-    # cv2.destroyAllWindows()
+    cv2.imshow("ROI", img)
+    cv2.waitKey(15000)
+    cv2.destroyAllWindows()
     print(position_char_answer)
     print(position_symbol_answer)
     if len(position_char_answer) > 2:
