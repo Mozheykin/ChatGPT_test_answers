@@ -46,11 +46,11 @@ def get_answer_text(data:dict) -> list:
     if answers is None:
         answers = re.search(r'(\sA\.)(\s\w)(.*)$', text)
     if answers is None:
-        answers = re.search(r'(@|©)(\s\w)(.*)$', text)
+        answers = re.search(r'(@|©|O)(\s\w)(.*)$', text)
     if answers is not None:
-        result = [answer.strip() for answer in re.split(r'(?:@|©)(?:\s)(.*?)(?:@|©|$)', answers[0]) if answer]
+        result = [answer.strip() for answer in re.split(r'(?:@|©|O)(?:\s)(.*?)(?:@|©|O|$)', answers[0]) if answer]
         if len(result) < 2:
-            result = [answer.strip() for answer in re.split(r'(?:[A-Z]\.)(?:\s)(.*?)(?:[A-Z]\.|$)', answers[0])[1:] if answer]
+            result = [answer.strip() for answer in re.split(r'(?:O?[A-Z]\.)(?:\s)(.*?)(?:O?[A-Z]\.|$)', answers[0])[1:] if answer]
         return result
     else:
         return []
