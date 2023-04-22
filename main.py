@@ -60,7 +60,7 @@ def init_press_v():
             nltk_list = get_nltk_index(answer_gpt=answer_chatgpt, answers=answers)
             logger.info(f'nltk: {nltk_list}')
             for nltk in nltk_list:
-                index = nltk.index(max(nltk)) + 1
+                index = nltk.index(max(nltk)) 
                 select_true_answer(index, positions_answers)
 
         else:

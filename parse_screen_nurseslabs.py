@@ -67,13 +67,14 @@ def get_parse_answer(answer_gpt:str) -> list:
     answer = re.search(r'(?:Answer:\s)(.*$)', answer_gpt)
     if answer:
         # answers = [x.group() for x in re.finditer(r'[A-Z](\.|\))(.*?)(?:[A-Z]\.|$)', answer[1])]
-        answers = re.split(r'[A-Z][\.\)]', answer[1])
-        answers = [answer.strip() for answer in answers if answer]
-        print(answers)
-        if answers:
-            return answers
-        else:
-            return answer[1]
+        if len(answer[1]) > 2:
+            answers = re.split(r'[A-Z][\.\)]', answer[1])
+            print(answers)
+            answers = [answer.strip() for answer in answers if answer]
+            print(answers)
+            if answers:
+                return answers
+        return [answer[1]]
     else:
         print([answer_gpt])
         return [answer_gpt]
@@ -83,7 +84,7 @@ def get_nltk_index(answer_gpt:str, answers:list) -> list:
     list_answers = get_parse_answer(answer_gpt=answer_gpt)
     for res in list_answers:
         result_list = list()
-        if len(res) > 1:
+        if len(res) > 2:
             for answer in answers:
                 result_list.append(nltk.edit_distance(answer, res))
             min_index = result_list.index(min(result_list))
@@ -91,6 +92,6 @@ def get_nltk_index(answer_gpt:str, answers:list) -> list:
         else:
             import string
             laters = string.ascii_uppercase[:len(answers)]
-            index = list(laters).index(res)
+            index = list(laters).index(res[0])
             result.append([1 if i == index else 0 for i in range(len(answers))])
     return result

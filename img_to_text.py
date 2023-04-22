@@ -8,9 +8,9 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
     result = list()
     img = numpy.array(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # _, thresh = cv2.adaptiveThreshold(gray, 127, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
-    thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-            cv2.THRESH_BINARY_INV,11,2)
+    _, thresh = cv2.threshold(gray, 127, 255,  cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    # thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            # cv2.THRESH_BINARY_INV,11,2)
     dict_result = pytesseract.image_to_data(thresh, output_type=pytesseract.Output.DICT)
     position_char_answer = list()
     position_symbol_answer = list()
@@ -47,9 +47,9 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                                             'h': h,
                                         })
 
-    cv2.imshow("ROI", thresh)
-    cv2.waitKey(15000)
-    cv2.destroyAllWindows()
+    # cv2.imshow("ROI", thresh)
+    # cv2.waitKey(15000)
+    # cv2.destroyAllWindows()
     print(position_char_answer)
     print(position_symbol_answer)
     if len(position_char_answer) > 2:

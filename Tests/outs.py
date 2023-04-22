@@ -484,7 +484,7 @@ OUT6 = ([{'h': 2, 'text': 'EB', 'w': 2, 'x': 131, 'y': 44},
 
 response1 = 'Answer: C'
 response2 = 'C.Partial thromboplastin time'
-response3 = 'C'
+response3 = 'Answer: D.'
 response4 = 'Answer: C) Partial thromboplastin time. B) Prothrombin time. A) sadsad.'
 response5 = 'Answer: C. Partial thromboplastin time. B. Prothrombin time. A. sadsad.'
 response6 = 'Answer: C) Partial thromboplastin time. B) Prothrombin time.'

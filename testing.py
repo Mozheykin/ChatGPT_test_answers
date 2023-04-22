@@ -16,7 +16,7 @@ from pprint import pprint
 
 # print(get_question_text)
 # print(get_answer_text)
-response = get_nltk_index(response3, ['A.sadsad', 'B.Prothrombin time', 'C. Partial thromboplastin time', 'D.sdhfdshfjsdfh', 'F. sdjfhdsjfhsdjfhsdhfsdf'])
+response = get_nltk_index(response3, ['A. Temperature of 37.5 degrees Celsius.', 'B.Urine output of 300 cc in 4 hours.', 'C. Poor skin turgor.', 'D. Blood glucose of 350 mg/dl.'])
 print(response)
 # response = get_answer_text(OUT3[0])
 # print(response)
