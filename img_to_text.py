@@ -1,3 +1,4 @@
+from pprint import pprint
 from PIL import Image
 import cv2
 import pytesseract
@@ -52,6 +53,7 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
     # cv2.destroyAllWindows()
     print(position_char_answer)
     print(position_symbol_answer)
+    pprint(result)
     if len(position_char_answer) > 2:
         return result, position_char_answer
     if len(position_symbol_answer) > 2:
