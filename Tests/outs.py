@@ -482,13 +482,13 @@ OUT6 = ([{'h': 2, 'text': 'EB', 'w': 2, 'x': 131, 'y': 44},
     {'h': 16, 'w': 12, 'x': 585, 'y': 985}])
 
 
-response1 = 'Answer: B'
-response2 = 'B.Drugname'
-response3 = 'B'
-response4 = 'Answer: A) Partial thromboplastin time. B) Prothrombin time. C) sadsad.'
-response5 = 'Answer: A. Partial thromboplastin time. B. Prothrombin time. C. sadsad.'
-response6 = 'Answer: A) Partial thromboplastin time. B) Prothrombin time.'
-response7 = 'Answer: A. Partial thromboplastin time.'
-response8 = 'Answer: A. Partial thromboplastin time'
-response9 = 'Answer: A. Partial thromboplastin time B. Prothrombin time C. sadsad'
-response10 = 'Answer: Option A.'
+response1 = 'Answer: C'
+response2 = 'C.Partial thromboplastin time'
+response3 = 'C'
+response4 = 'Answer: C) Partial thromboplastin time. B) Prothrombin time. A) sadsad.'
+response5 = 'Answer: C. Partial thromboplastin time. B. Prothrombin time. A. sadsad.'
+response6 = 'Answer: C) Partial thromboplastin time. B) Prothrombin time.'
+response7 = 'Answer: C. Partial thromboplastin time.'
+response8 = 'Answer: C. Partial thromboplastin time'
+response9 = 'Answer: C. Partial thromboplastin time B. Prothrombin time A. sadsad'
+response10 = 'Answer: Option C.'
