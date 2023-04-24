@@ -31,7 +31,7 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                 }
             )
             splits_symbols = [split_char in value for split_char in split_symbols]
-            splits_chars = re.search(r'(\s|O)?[A-Z]\.', value)  
+            splits_chars = re.search(r'(\s|O|^)[A-Z]\.', value)  
             thresh = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
             if splits_chars is not None:
                 position_char_answer.append({
@@ -48,9 +48,9 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                                             'h': h,
                                         })
 
-    # cv2.imshow("ROI", img)
-    # cv2.waitKey(15000)
-    # cv2.destroyAllWindows()
+    cv2.imshow("ROI", img)
+    cv2.waitKey(15000)
+    cv2.destroyAllWindows()
     print(position_char_answer)
     print(position_symbol_answer)
     pprint(result)

@@ -87,6 +87,7 @@ def get_nltk_index(answer_gpt:str, answers:list) -> list:
         if len(res) > 2:
             for answer in answers:
                 result_list.append(nltk.edit_distance(answer, res))
+            print(result_list)
             min_index = result_list.index(min(result_list))
             result.append([1 if index == min_index else 0 for index in range(len(answers))])
         else:

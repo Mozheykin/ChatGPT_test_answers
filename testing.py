@@ -1,5 +1,5 @@
 from parse_screen_nurseslabs import get_question_text, get_answer_text, get_nltk_index
-from Tests.outs import OUT1, OUT2, OUT3, response1, OUT6, response4, response5, response6, response7, response2, response3, response8, response9, response10, response11
+from Tests.outs import OUT1, OUT2, OUT3, response1, OUT6, response4, response5, response6, response7, response2, response3, response8, response9, response10, response11, response12
 from pathlib import Path
 import cv2
 from img_to_text import img_to_text
@@ -16,7 +16,7 @@ from pprint import pprint
 
 # print(get_question_text)
 # print(get_answer_text)
-response = get_nltk_index(response11, ['A.Record the number of stools per day.', 'B. Maintain strict intake and output records.', 'C.Sterile technique for dressing change at IV site.', 'D. Monitor for cardiac arrhythmias.'])
+response = get_nltk_index(response12, ['A. “It will slow down the replication of the virus.”', 'B. “This medication will improve your child’s overall health status.”', 'C.“This medication is used to prevent bacterial infections.”', 'D. “It will increase the effectiveness of the other medications your child receives.”'])
 print(response)
 # response = get_answer_text(OUT3[0])
 # print(response)
