@@ -16,7 +16,16 @@ from pprint import pprint
 
 # print(get_question_text)
 # print(get_answer_text)
-response = get_nltk_index(response12, ['A. “It will slow down the replication of the virus.”', 'B. “This medication will improve your child’s overall health status.”', 'C.“This medication is used to prevent bacterial infections.”', 'D. “It will increase the effectiveness of the other medications your child receives.”'])
-print(response)
+# response = get_nltk_index(response12, ['A. “It will slow down the replication of the virus.”', 'B. “This medication will improve your child’s overall health status.”', 'C.“This medication is used to prevent bacterial infections.”', 'D. “It will increase the effectiveness of the other medications your child receives.”'])
+# print(response)
 # response = get_answer_text(OUT3[0])
 # print(response)
+
+string = ' A. The client must take the medication at evenly spaced intervals. OB. The client may save leftover medication For a Future illness. OQ C.IFsigns of an allergic reaction, continue the medication and notify the physician. OD. Clients taking oral contraceptives must be cautioned to use an alternate Form of birth control while being treated with penicillin.'
+
+import re 
+
+result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', string=string) if answer.strip() != '' ]
+
+# result = [answer.strip() for answer in re.split(r'(?:O?[A-Z]\.)(?:\s)(.*?)(?:O?[A-Z]\.|$)', string=string)[1:] if answer]
+print(result)
