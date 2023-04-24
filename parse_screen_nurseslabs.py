@@ -41,19 +41,21 @@ def get_question_text(data:dict) -> str:
 def get_answer_text(data:dict) -> list:
     text = ' '.join(dict_t.get('text') for dict_t in data).strip()
     print(text)
-    answers = re.search(r'(@|©)(\s\w\.)(.*)$', text)
+    answers = re.search(r'(\sA\.)(\s\w)(.*)$', text)
     # answers = re.search(r'(\s|O|^)[A-Z]\.', text)
     # print(answers)
     if answers is None:
-        answers = re.search(r'(\sA\.)(\s\w)(.*)$', text)
+        answers = re.search(r'(@|©)(\s\w\.)(.*)$', text)
     if answers is None:
         answers = re.search(r'(@|©|O)(\s\w)(.*)$', text)
     if answers is not None:
         print(answers)
-        result = [answer.strip() for answer in re.split(r'(?:@|©|O)(?:\s)(.*?)(?:@|©|O|$)', answers[0]) if answer]
+        result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', answers[0])[1:] if answer]
+        # result = [answer.strip() for answer in re.split(r'(?:@|©|O)(?:\s)(.*?)(?:@|©|O|$)', answers[0]) if answer]
         if len(result) < 2:
             # result = [answer.strip() for answer in re.split(r'(?:O?[A-Z]\.)(?:\s)(.*?)(?:O?[A-Z]\.|$)', answers[0])[1:] if answer]
-            result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', answers[0])[1:] if answer]
+            # result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', answers[0])[1:] if answer]
+            result = [answer.strip() for answer in re.split(r'(?:@|©|O)(?:\s)(.*?)(?:@|©|O|$)', answers[0]) if answer]
         return result
     else:
         return []
