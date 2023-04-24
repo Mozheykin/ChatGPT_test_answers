@@ -9,9 +9,9 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
     result = list()
     img = numpy.array(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, thresh = cv2.threshold(gray, 127, 255,  cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
-    # thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-            # cv2.THRESH_BINARY_INV,11,2)
+    # _, thresh = cv2.threshold(gray, 127, 255,  cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+    thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv2.THRESH_BINARY_INV,21,2)
     dict_result = pytesseract.image_to_data(thresh, output_type=pytesseract.Output.DICT)
     position_char_answer = list()
     position_symbol_answer = list()
@@ -31,8 +31,8 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                 }
             )
             splits_symbols = [split_char in value for split_char in split_symbols]
-            splits_chars = re.search(r'(\s|O)[A-Z]\.', value)             
-            thresh = cv2.rectangle(thresh, (x, y), (x + w, y + h), (0, 255, 0), 3)
+            splits_chars = re.search(r'(\s|O)?[A-Z]\.', value)  
+            thresh = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
             if splits_chars is not None:
                 position_char_answer.append({
                                             'x': x, 
@@ -48,7 +48,7 @@ def img_to_text(img:Image, split_chars:list, split_symbols:list, max_h:int = 31,
                                             'h': h,
                                         })
 
-    # cv2.imshow("ROI", thresh)
+    # cv2.imshow("ROI", img)
     # cv2.waitKey(15000)
     # cv2.destroyAllWindows()
     print(position_char_answer)
