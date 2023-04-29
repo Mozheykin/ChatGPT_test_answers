@@ -45,6 +45,8 @@ def get_answer_text(data:dict) -> list:
     text = ' '.join(dict_t.get('text') for dict_t in data).strip()
     print(text)
     answers = re.search(r'(\sA\.)(\s\w)(.*)$', text)
+    if answers is None:
+        answers = re.search(r'(?:\s|O|^)[A-Z]\.(.*)$', text)
     # answers = re.search(r'(\s|O|^)[A-Z]\.', text)
     # print(answers)
     if answers is None:
