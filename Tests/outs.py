@@ -494,3 +494,4 @@ response9 = 'Answer: C. Partial thromboplastin time B. Prothrombin time A. sadsa
 response10 = 'Answer: Option C.'
 response11 = 'Answer: B. Maintain strict intake and output records.'
 response12 = 'Answer: B. “This medication will improve your child’s overall health status.”'
+response13 = 'Answer: ABC'

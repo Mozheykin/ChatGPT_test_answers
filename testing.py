@@ -21,11 +21,12 @@ from pprint import pprint
 # response = get_answer_text(OUT3[0])
 # print(response)
 
-string = ' A. The client must take the medication at evenly spaced intervals. OB. The client may save leftover medication For a Future illness. OQ C.IFsigns of an allergic reaction, continue the medication and notify the physician. OD. Clients taking oral contraceptives must be cautioned to use an alternate Form of birth control while being treated with penicillin.'
+# string = ' A. The client must take the medication at evenly spaced intervals. OB. The client may save leftover medication For a Future illness. OQ C.IFsigns of an allergic reaction, continue the medication and notify the physician. OD. Clients taking oral contraceptives must be cautioned to use an alternate Form of birth control while being treated with penicillin.'
 
-import re 
+# import re 
 
-result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', string=string) if answer.strip() != '' ]
+# result = [answer.strip() for answer in re.split(r'(?:\s|O|^)[A-Z]\.', string=string) if answer.strip() != '' ]
 
-# result = [answer.strip() for answer in re.split(r'(?:O?[A-Z]\.)(?:\s)(.*?)(?:O?[A-Z]\.|$)', string=string)[1:] if answer]
+# # result = [answer.strip() for answer in re.split(r'(?:O?[A-Z]\.)(?:\s)(.*?)(?:O?[A-Z]\.|$)', string=string)[1:] if answer]
+
 print(result)

@@ -1,13 +1,12 @@
 import keyboard
 from get_screen import screenshot
 from img_to_text import img_to_text
-from parse_screen_nurseslabs import get_question, get_answers, get_nltk_index, get_answer_text, get_question_text
+from parse_screen_nurseslabs import get_nltk_index, get_answer_text, get_question_text
 from chatgpt import get_response, get_answer
 from loguru import logger
-from config import Start_Question, End_Question, Start_Answer, End_Answer, chars_answer, symbols_answer
+from config import chars_answer, symbols_answer
 from move_mouse import move_mouse
 from errors import *
-from time import sleep
 
 logger.add('logging.log', format='{time} {level} {message}', level='INFO')
 

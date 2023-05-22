@@ -80,7 +80,10 @@ def get_parse_answer(answer_gpt:str) -> list:
         if len(answer[1]) > 2:
             answers = re.split(r'[A-Z][\.\)]', answer[1])
             print(answers)
-            answers = [answer.strip() for answer in answers if answer]
+            if answers is not None:
+                answers = [answer.strip() for answer in answers if answer]
+            else:
+                answers = re.split(r'[A-Z]', answer[1])
             print(answers)
             if answers:
                 return answers
